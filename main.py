@@ -1,3 +1,5 @@
+import sys
+
 def count_words(text):
     words = text.split()
     return len(words)
@@ -25,12 +27,12 @@ def find_most_common_word(word_count):
 def count_characters(text):
     char_count = {}
     lowered_string = text.lower()
-    for i in lowered_string:
-        if i.isalpha():
-            if i in char_count:
-                char_count[i] += 1
+    for char in lowered_string:
+        if char.isalpha():
+            if char in char_count:
+                char_count[char] += 1
             else:
-                char_count[i] = 1
+                char_count[char] = 1
     return char_count
 
 def sort_characters(char_count):
@@ -38,33 +40,75 @@ def sort_characters(char_count):
     for char, count in char_count.items():
         char_list.append({"character": char, "num": count})
     
-    def sort_on(dict):
-        return dict["num"]
+    def sort_on(dict_item):
+        return dict_item["num"]
 
     char_list.sort(reverse=True, key=sort_on)
     return char_list
 
+def count_punctuation(text):
+    punctuation_count = {}
+    for char in text:
+        if not char.isalpha() and not char.isspace() and not char.isdigit():
+            if char in punctuation_count:
+                punctuation_count[char] += 1
+            else:
+                punctuation_count[char] = 1
+    return punctuation_count
+
 def main(file_path):
-    with open(file_path) as f:
-        file_contents = f.read()
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            file_contents = f.read()
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} was not found.")
+        return
 
     word_count = count_words(file_contents)
     word_frequencies = count_word_frequency(file_contents)
     most_common_word, most_common_word_count = find_most_common_word(word_frequencies)
     char_count = count_characters(file_contents)
     sorted_characters = sort_characters(char_count)
+    punctuation_count = count_punctuation(file_contents)
+
+def main(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            file_contents = f.read()
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} was not found.")
+        return
+
+    word_count = count_words(file_contents)
+    word_frequencies = count_word_frequency(file_contents)
+    most_common_word, most_common_word_count = find_most_common_word(word_frequencies)
+    char_count = count_characters(file_contents)
+    sorted_characters = sort_characters(char_count)
+    punctuation_count = count_punctuation(file_contents)
 
     print(f"--- Begin report of {file_path} ---")
-    print()
     print(f"{word_count} words found in the document")
-    print()
-    print(f"The most common word is '{most_common_word}' which was found {most_common_word_count} times")
-    print()
+    
+    if most_common_word:
+        print(f"The most common word is '{most_common_word}' which was found {most_common_word_count} times.")
+    else:
+        print("No common word found.")
 
-    print("Characters found:")
+    print("\nCharacter frequency (descending order):")
     for item in sorted_characters:
-        print(f"The '{item['character']}' character was found {item['num']} times")
-    print()
-    print("--- End report ---")
+        print(f"Character '{item['character']}' is found {item['num']} times.")
 
-main('books/frankenstein.txt')
+    print("\nPunctuation/Symbol frequency:")
+    for punctuation, count in punctuation_count.items():
+        print(f"'{punctuation}': {count}")
+
+    print("--- End of report ---")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <file_path>")
+        sys.exit(1)
+    
+    file_path = sys.argv[1]
+    main(file_path)
