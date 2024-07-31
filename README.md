@@ -1,4 +1,4 @@
-# Text Analysis Tool
+# Bookbot - The Text Analysis Tool
 
 This is a simple text analysis tool written in Python. It reads a text file and generates a report with the following information:
 - The total number of words.
@@ -13,7 +13,6 @@ This is a simple text analysis tool written in Python. It reads a text file and 
 - [Example](#example)
 - [Files](#files)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
@@ -21,3 +20,15 @@ No special dependencies are required for this project, only Python 3.x. You can 
 
 ```bash
 python --version
+```
+## Usage
+
+To use this tool, follow these steps:
+
+Clone the repository:
+
+```
+python
+git clone https://github.com/github-username/repo-name
+cd repo-name
+```
