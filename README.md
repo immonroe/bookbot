@@ -34,7 +34,7 @@ cd repo-name
 Run the script with the path to your text file as an argument:
 
 ```bash
-python text_analysis.py path/to/your/textfile.txt
+python main.py path/to/your/textfile.txt
 ```
 ## Example
 
@@ -43,7 +43,7 @@ Here is an example of how to run the script and its output:
 Command:
 
 ```bash
-python text_analysis.py path/to/your/textfile.txt
+python main.py path/to/your/textfile.txt
 ```
 
 Output
@@ -67,7 +67,7 @@ Punctuation frequency:
 
 ## Files
 
-- `text_analysis.py`: The main script for text analysis.
+- `main.py`: The main script for text analysis.
 - `test.py`: A script for testing the analysis tool with a predefined text (e.g., Frankenstein).
 
 ## Contributing
