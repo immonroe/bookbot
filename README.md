@@ -6,7 +6,7 @@ This is a simple text analysis tool written in Python. It reads a text file and 
 - The frequency of each character (in descending order).
 - The frequency of punctuation marks (excluding numbers).
 
-![Video](https://storage.googleapis.com/qvault-webapp-dynamic-assets/lesson_videos/bookbot-final-project-demo.mp4)
+<video src="https://storage.googleapis.com/qvault-webapp-dynamic-assets/lesson_videos/bookbot-final-project-demo.mp4>
 
 ## Table of Contents
 
